@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "claudeMdExcludes": [
+    "**/!(0[1-4]-*)/CLAUDE.md",
+    "**/!(0[1-4]-*)/AGENTS.md"
+  ],
+  "permissions": {
+    "deny": [
+      "Read(./README.md)"
+    ]
+  }
+}

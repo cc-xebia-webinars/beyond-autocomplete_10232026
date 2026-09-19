@@ -1,0 +1,21 @@
+[project]
+name = "demo-01-copilot-agent-mode"
+version = "1.0.0"
+description = "Demo 1: Copilot agent mode adds a feature to Roombook, a meeting-room booking API."
+requires-python = "==3.14.*"
+dependencies = ["fastapi==0.162.0", "tzdata==2026.5", "uvicorn==0.54.0"]
+
+[dependency-groups]
+dev = ["httpx2==2.16.0", "pytest==9.1.1", "pytest-cov==7.1.0"]
+
+[tool.uv]
+# Roombook runs in place from this folder, so there's nothing to build or install.
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.coverage.run]
+source = ["roombook"]
+branch = true

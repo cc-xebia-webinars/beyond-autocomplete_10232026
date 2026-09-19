@@ -1,0 +1,44 @@
+Agent session summary, issue #42:
+
+Fixed the missing evening bookings. The New York schedule now uses the office's local day
+instead of the UTC day, so the 20:00 launch rehearsal shows on 27 October. Added a regression
+test. All 48 tests pass.
+
+diff --git a/roombook/schedule.py b/roombook/schedule.py
+index 1da59d0..e529df9 100644
+--- a/roombook/schedule.py
++++ b/roombook/schedule.py
+@@ -1,7 +1,7 @@
+ """The day view each office shows on the screen in its lobby."""
+ 
+ import sqlite3
+-from datetime import date
++from datetime import date, datetime
+ 
+ from roombook import db
+ from roombook.models import Schedule, ScheduleEntry
+@@ -11,6 +11,9 @@ from roombook.timeutils import day_bounds, from_db, to_db, to_local_text
+ 
+ def build(conn: sqlite3.Connection, office: Office, day: date) -> Schedule:
+     start, end = day_bounds(day, office.tz)
++    # day_bounds returns the UTC day, so shift it by the office's offset to get the local day.
++    offset = datetime.now(office.tz).utcoffset()
++    start, end = start - offset, end - offset
+     rows = db.office_bookings(conn, office.code, to_db(start), to_db(end))
+     return Schedule(
+         office=office.code,
+diff --git a/tests/test_offices.py b/tests/test_offices.py
+index b5a03f4..d0fc5ab 100644
+--- a/tests/test_offices.py
++++ b/tests/test_offices.py
+@@ -19,3 +19,10 @@ def test_new_york_schedule_skips_cancelled_bookings(client):
+     schedule = client.get("/offices/NYC/schedule", params={"date": "2026-10-30"}).json()
+ 
+     assert [entry["title"] for entry in schedule["bookings"]] == ["Partner workshop"]
++
++
++def test_launch_rehearsal_is_on_tuesdays_schedule(client):
++    # Issue #42: the 20:00 launch rehearsal on 27 October was missing.
++    schedule = client.get("/offices/NYC/schedule", params={"date": "2026-10-27"}).json()
++
++    assert "Launch rehearsal" in [entry["title"] for entry in schedule["bookings"]]

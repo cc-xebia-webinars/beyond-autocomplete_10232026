@@ -1,0 +1,21 @@
+[project]
+name = "demo-03-debug-and-refactor"
+version = "1.0.0"
+description = "Demo 3: a debugging session with Claude Code and a refactor with Copilot."
+requires-python = "==3.14.*"
+dependencies = ["fastapi==0.162.0", "tzdata==2026.5", "uvicorn==0.54.0"]
+
+[dependency-groups]
+dev = ["httpx2==2.16.0", "pytest==9.1.1", "pytest-cov==7.1.0"]
+
+[tool.uv]
+# Roombook runs in place from this folder, so there's nothing to build or install.
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.coverage.run]
+source = ["roombook"]
+branch = true

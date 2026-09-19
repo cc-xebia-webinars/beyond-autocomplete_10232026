@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:db="https://cloudcontraptions.com/ns/diagram-builder/1" width="1008pt" height="612pt" viewBox="0 0 1008 612" db:version="1">
+<metadata>
+<db:model version="1" generator="diagram-builder 0.1.0" body-hash="d4bdd1c88b1dea54"><![CDATA[
+{
+  "version": 1,
+  "title": "The agent loop",
+  "page": {
+    "width": 1008.0,
+    "height": 612.0,
+    "margin": 36.0,
+    "background": "#ffffff"
+  },
+  "elements": [
+    {
+      "type": "shape",
+      "id": "goal",
+      "kind": "rect",
+      "x": 30.0,
+      "y": 230.0,
+      "w": 150.0,
+      "h": 96.0,
+      "text": "Your goal\nThe task and what done means",
+      "style": {
+        "fill": "#fbeecf",
+        "stroke": "#b07d00",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 16.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#5c4100",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "gather",
+      "kind": "rect",
+      "x": 229.0,
+      "y": 230.0,
+      "w": 150.0,
+      "h": 96.0,
+      "text": "Gather context\nSearch and read files",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 16.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "plan",
+      "kind": "rect",
+      "x": 428.0,
+      "y": 230.0,
+      "w": 150.0,
+      "h": 96.0,
+      "text": "Plan\nBreak the task into steps",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 16.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "act",
+      "kind": "rect",
+      "x": 627.0,
+      "y": 230.0,
+      "w": 150.0,
+      "h": 96.0,
+      "text": "Act\nEdit files and run commands",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 16.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "verify",
+      "kind": "rect",
+      "x": 826.0,
+      "y": 230.0,
+      "w": 150.0,
+      "h": 96.0,
+      "text": "Verify\nRun the tests and read errors",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 16.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn1",
+      "from": "goal",
+      "to": "gather",
+      "from_side": "right",
+      "to_side": "left",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn2",
+      "from": "gather",
+      "to": "plan",
+      "from_side": "right",
+      "to_side": "left",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn3",
+      "from": "plan",
+      "to": "act",
+      "from_side": "right",
+      "to_side": "left",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn4",
+      "from": "act",
+      "to": "verify",
+      "from_side": "right",
+      "to_side": "left",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "loop",
+      "from": "verify",
+      "to": "gather",
+      "from_side": "top",
+      "to_side": "top",
+      "label": "Not done yet? Go round again",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 15.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "you1",
+      "kind": "rect",
+      "x": 229.0,
+      "y": 390.0,
+      "w": 150.0,
+      "h": 84.0,
+      "text": "Give it the context: AGENTS.md, CLAUDE.md",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 15.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "you2",
+      "kind": "rect",
+      "x": 428.0,
+      "y": 390.0,
+      "w": 150.0,
+      "h": 84.0,
+      "text": "Review the plan before any code",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 15.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "you3",
+      "kind": "rect",
+      "x": 627.0,
+      "y": 390.0,
+      "w": 150.0,
+      "h": 84.0,
+      "text": "Approve each command, step in if it drifts",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 15.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "you4",
+      "kind": "rect",
+      "x": 826.0,
+      "y": 390.0,
+      "w": 150.0,
+      "h": 84.0,
+      "text": "Review the diff and the tests",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 15.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn5",
+      "from": "gather",
+      "to": "you1",
+      "from_side": "bottom",
+      "to_side": "top",
+      "route": "straight",
+      "end_arrow": "none",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn6",
+      "from": "plan",
+      "to": "you2",
+      "from_side": "bottom",
+      "to_side": "top",
+      "route": "straight",
+      "end_arrow": "none",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn7",
+      "from": "act",
+      "to": "you3",
+      "from_side": "bottom",
+      "to_side": "top",
+      "route": "straight",
+      "end_arrow": "none",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn8",
+      "from": "verify",
+      "to": "you4",
+      "from_side": "bottom",
+      "to_side": "top",
+      "route": "straight",
+      "end_arrow": "none",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "agentlabel",
+      "x": 229.0,
+      "y": 182.0,
+      "text": "The agent",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 15.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "youlabel",
+      "x": 30.0,
+      "y": 420.0,
+      "text": "You",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 15.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    }
+  ],
+  "next_id": {
+    "conn": 8
+  }
+}
+]]></db:model>
+</metadata>
+<!-- GENERATED BY diagram-builder. The <metadata> block above is the source of truth.
+       Edits made below this line are DISCARDED on the next diagram-builder command. -->
+<g id="db-body">
+<rect x="0" y="0" width="1008" height="612" fill="#ffffff"/>
+<g id="conn1"><path d="M180 278L220 278" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M229 278L219 282L219 274Z" fill="#6b6a66"/></g>
+<g id="conn2"><path d="M379 278L419 278" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M428 278L418 282L418 274Z" fill="#6b6a66"/></g>
+<g id="conn3"><path d="M578 278L618 278" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M627 278L617 282L617 274Z" fill="#6b6a66"/></g>
+<g id="conn4"><path d="M777 278L817 278" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M826 278L816 282L816 274Z" fill="#6b6a66"/></g>
+<g id="loop"><path d="M901 230L901 214L304 214L304 221" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M304 230L300 220L308 220Z" fill="#6b6a66"/><rect x="504.78" y="203.13" width="204.45" height="21.75" rx="2" fill="#ffffff"/><text x="607" y="219.63" font-family="IBM Plex Sans" font-size="15" fill="#1a1a1a" text-anchor="middle"><tspan x="607" dy="0">Not done yet? Go round again</tspan></text></g>
+<g id="conn5"><path d="M304 326L304 390" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="conn6"><path d="M503 326L503 390" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="conn7"><path d="M702 326L702 390" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="conn8"><path d="M901 326L901 390" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="goal"><path d="M40 230H170A10 10 0 0 1 180 240V316A10 10 0 0 1 170 326H40A10 10 0 0 1 30 316V240A10 10 0 0 1 40 230Z" fill="#fbeecf" stroke="#b07d00" stroke-width="1.5"/><text x="105" y="264" font-family="IBM Plex Sans" font-size="16" fill="#5c4100" text-anchor="middle"><tspan x="105" dy="0">Your goal</tspan><tspan x="105" dy="20">The task and</tspan><tspan x="105" dy="20">what done means</tspan></text></g>
+<g id="gather"><path d="M239 230H369A10 10 0 0 1 379 240V316A10 10 0 0 1 369 326H239A10 10 0 0 1 229 316V240A10 10 0 0 1 239 230Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="304" y="264" font-family="IBM Plex Sans" font-size="16" fill="#10386b" text-anchor="middle"><tspan x="304" dy="0">Gather context</tspan><tspan x="304" dy="20">Search and read</tspan><tspan x="304" dy="20">files</tspan></text></g>
+<g id="plan"><path d="M438 230H568A10 10 0 0 1 578 240V316A10 10 0 0 1 568 326H438A10 10 0 0 1 428 316V240A10 10 0 0 1 438 230Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="503" y="264" font-family="IBM Plex Sans" font-size="16" fill="#10386b" text-anchor="middle"><tspan x="503" dy="0">Plan</tspan><tspan x="503" dy="20">Break the task</tspan><tspan x="503" dy="20">into steps</tspan></text></g>
+<g id="act"><path d="M637 230H767A10 10 0 0 1 777 240V316A10 10 0 0 1 767 326H637A10 10 0 0 1 627 316V240A10 10 0 0 1 637 230Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="702" y="264" font-family="IBM Plex Sans" font-size="16" fill="#10386b" text-anchor="middle"><tspan x="702" dy="0">Act</tspan><tspan x="702" dy="20">Edit files and run</tspan><tspan x="702" dy="20">commands</tspan></text></g>
+<g id="verify"><path d="M836 230H966A10 10 0 0 1 976 240V316A10 10 0 0 1 966 326H836A10 10 0 0 1 826 316V240A10 10 0 0 1 836 230Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="901" y="264" font-family="IBM Plex Sans" font-size="16" fill="#10386b" text-anchor="middle"><tspan x="901" dy="0">Verify</tspan><tspan x="901" dy="20">Run the tests and</tspan><tspan x="901" dy="20">read errors</tspan></text></g>
+<g id="you1"><path d="M239 390H369A10 10 0 0 1 379 400V464A10 10 0 0 1 369 474H239A10 10 0 0 1 229 464V400A10 10 0 0 1 239 390Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="304" y="418.88" font-family="IBM Plex Sans" font-size="15" fill="#7a2f0f" text-anchor="middle"><tspan x="304" dy="0">Give it the context:</tspan><tspan x="304" dy="18.75">AGENTS.md,</tspan><tspan x="304" dy="18.75">CLAUDE.md</tspan></text></g>
+<g id="you2"><path d="M438 390H568A10 10 0 0 1 578 400V464A10 10 0 0 1 568 474H438A10 10 0 0 1 428 464V400A10 10 0 0 1 438 390Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="503" y="428.25" font-family="IBM Plex Sans" font-size="15" fill="#7a2f0f" text-anchor="middle"><tspan x="503" dy="0">Review the plan</tspan><tspan x="503" dy="18.75">before any code</tspan></text></g>
+<g id="you3"><path d="M637 390H767A10 10 0 0 1 777 400V464A10 10 0 0 1 767 474H637A10 10 0 0 1 627 464V400A10 10 0 0 1 637 390Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="702" y="418.88" font-family="IBM Plex Sans" font-size="15" fill="#7a2f0f" text-anchor="middle"><tspan x="702" dy="0">Approve each</tspan><tspan x="702" dy="18.75">command, step in</tspan><tspan x="702" dy="18.75">if it drifts</tspan></text></g>
+<g id="you4"><path d="M836 390H966A10 10 0 0 1 976 400V464A10 10 0 0 1 966 474H836A10 10 0 0 1 826 464V400A10 10 0 0 1 836 390Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="901" y="428.25" font-family="IBM Plex Sans" font-size="15" fill="#7a2f0f" text-anchor="middle"><tspan x="901" dy="0">Review the diff and</tspan><tspan x="901" dy="18.75">the tests</tspan></text></g>
+<g id="agentlabel"><text x="263.76" y="197" font-family="IBM Plex Sans" font-size="15" font-weight="700" fill="#6b6a66" text-anchor="middle"><tspan x="263.76" dy="0">The agent</tspan></text></g>
+<g id="youlabel"><text x="43.12" y="435" font-family="IBM Plex Sans" font-size="15" font-weight="700" fill="#6b6a66" text-anchor="middle"><tspan x="43.12" dy="0">You</tspan></text></g>
+</g>
+</svg>
